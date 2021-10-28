@@ -1,6 +1,6 @@
 # midterm2
 
-What are the advantages of a BST vs. linked list?
+## What are the advantages of a BST vs. linked list?
 Consider:
 Linear vs. binary search
 Arrays vs. linked lists
@@ -9,11 +9,11 @@ With linked list, you can only do linear search
 Binary search trees can use binary search
 Binary search is faster
 
-When does a BST give the best performance?
+## When does a BST give the best performance?
 Minimum height
 Can use binary search (faster)
 
-When does a BST give the worst performance?
+## When does a BST give the worst performance?
 Based on shape of the tree
 Maximum height = when are insertions are in sorted order, we get generate tree
 Every child only has a right node / will work like a linked list
@@ -41,39 +41,39 @@ Stack
 Queue
 Heap 
 
-Can you describe all of these ADTs?
+## Can you describe all of these ADTs?
 
-Queue
+### Queue
 FIFO / first in, first out
 Access to data = front and back
 Dequeue removes from front / enqueue adds to the back
 
-Stack
+### Stack
 LIFO / Last in, first out
 Access: only from top
 Method: push and pop
 Removing: only from top
 
-Heap
+### Heap
 Insert or remove
 Enqueue or dequeue
 Insert at the end and dequeue from the end
 
-Sorted list
+### Sorted list
 List of elements in sorted order (ascending order, each element greater than the previous)
 Random access
 No insert/removal
 Insert = right spot
 Removal = right spot
 
-Unsorted list
+### Unsorted list
 List of elements in unsorted order
 Insert at one end and remove either end
 No rules for enqueue or dequeue or insert and remove
 No particular order
 Access to all the elements
 
-The above ADTs can be implemented with:
+## The above ADTs can be implemented with:
 Array
 Linked list
 BST
