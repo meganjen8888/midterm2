@@ -16,10 +16,14 @@ Can use binary search (faster)
 ## When does a BST give the worst performance?
 Based on shape of the tree
 Maximum height = when are insertions are in sorted order, we get generate tree
+
 Every child only has a right node / will work like a linked list
+
 Same applies for the reverse (every child has a node on the left)
 
-Recursive way - we can count all of the binary nodes
+In the worst case, it's searching for the last node in a linear linked list. This is when the user must look at every node in the list. In average, they would search half the list, and if it contains n nodes, then the user makes n number of comparisons to find the last node. If n nodes were arranged in a binary search tree of minimum height, the user would not make more than 10(log2(n)<10) comparisons. 
+
+**Recursive way** - we can count all of the binary nodes
 
 Recursive code for count
 
@@ -29,10 +33,29 @@ Recursively counts all of the nodes
 
 How do we recursively count nodes of a BST?
 
+```cpp
+int CountNodes(TreeNode* tree);
+int TreeType::GetLength() const
+// Calls the recursive function CountNodes to count the
+// nodes in the tree.
+{
+    return CountNodes(root);
+}
+int CountNodes(TreeNode* tree)
+// Post: Returns the number of nodes in the tree.
+{
+    if (tree == NULL)
+        return 0;
+    else
+        return CountNodes(tree->left) +
+          CountNodes(tree->right) + 1;
+}
+```
+## What is the cause of a degenerate tree?
 
+When a tree is balanced. It is not as efficient.
 
-
-Review ADTs and Implementations
+## Review ADTs and Implementations
 
 Abstract Data Types
 Sorted List
@@ -43,42 +66,42 @@ Heap
 
 ## Can you describe all of these ADTs?
 
-### Queue
-FIFO / first in, first out
-Access to data = front and back
-Dequeue removes from front / enqueue adds to the back
+- ### Queue
+ - FIFO / first in, first out
+ - Access to data = front and back
+ - Dequeue removes from front / enqueue adds to the back
 
-### Stack
-LIFO / Last in, first out
-Access: only from top
-Method: push and pop
-Removing: only from top
+- ### Stack
+- LIFO / Last in, first out
+ - **Access**: only from top
+ - **Method**: push and pop
+ - **Removing**: only from top
 
-### Heap
-Insert or remove
-Enqueue or dequeue
-Insert at the end and dequeue from the end
+- ### Heap
+ - Insert or remove
+ - Enqueue or dequeue
+ - Insert at the end and dequeue from the end
 
-### Sorted list
-List of elements in sorted order (ascending order, each element greater than the previous)
-Random access
-No insert/removal
-Insert = right spot
-Removal = right spot
+- ### Sorted list
+ - List of elements in sorted order (ascending order, each element greater than the previous)
+ - Random access
+ - No insert/removal
+ - Insert = right spot
+ - Removal = right spot
 
-### Unsorted list
-List of elements in unsorted order
-Insert at one end and remove either end
-No rules for enqueue or dequeue or insert and remove
-No particular order
-Access to all the elements
+- ### Unsorted list
+ - List of elements in unsorted order
+ - Insert at one end and remove either end
+ - No rules for enqueue or dequeue or insert and remove
+ - No particular order
+ - Access to all the elements
 
-## The above ADTs can be implemented with:
-Array
-Linked list
-BST
+- ## The above ADTs can be implemented with:
+ - Array
+ - Linked list
+ - BST
 
-Unsorted list might be an array or a linked list
+**Unsorted list** might be an array or a linked list
 
 Stack could be implemented as an array
 Access one side (top)
@@ -102,11 +125,69 @@ Same for stack
 BSTs
 Review BSTs
 Insert elements into a BST
+
+```cpp
+void Insert(TreeNode*& tree, ItemType item);
+
+void TreeType::PutItem(ItemType item)
+//Call the recursive function Insert to insert the item into the tree
+{
+ Insert(root, item);
+}
+
+void Insert(TreeNode*& tree, ItemType item) 
+//Insert the item into the tree
+//And then item is in the tree. Search property is maintained
+{
+ if (tree==NULL) //Insertion place found
+ {
+  tree = new TreeNode;
+  tree->right = NULL;
+  tree->left = NULL;
+  tree->info = item;
+ }
+ else if (item < tree->info) 
+  Insert(tree->left, item); //Item is in left subtree
+ else
+  Insert(tree->right, item); //In right subtree
+}
+```
+
 Trace BST by traversals
 What is the efficiency of BST at best and worst
 When does the best and worst occur
 Review Insert, Traversal, and CountNode methods
 Write recursive methods to count nodes or levels
+
+How to remove a node from BST:
+
+1. Find the node you want to delete
+2. Find the successor node of p. It's the node in the right subtree which has the minimum value.
+3. Replace the content of node p with the content of the successor node
+4. Remove the successor node
+
+
+```cpp
+void DeleteNode(TreeNode*& tree);
+
+void Delete(TreeNode*& tree, ItemType item);
+
+void TreeType::DeleteItem(ItemType item)
+{ //Calls recursive function Delete to remove the item from the tree
+ Delete(root, item);
+}
+void Delete(TreeNode*& tree, ItemType item) 
+//This deletes the item from the tree
+//And then the item is gone
+{
+ if(item < tree->info)
+  Delete(tree->left, item); //Looks in the left subtree
+ else if (item > tree -> info)
+  Delete(tree->right, item); //Looks in the right subtree
+ else
+  DeleteNode(tree); //It's found. We call DeleteNNode
+}
+```
 
 Logic: In a stack you would delete/pop the top of the stack. So you create a temp new Node and and set it to top->next. (temp = top->next) you can then delete top then set top = temp and you are done.
 
