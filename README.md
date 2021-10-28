@@ -107,3 +107,38 @@ What is the efficiency of BST at best and worst
 When does the best and worst occur
 Review Insert, Traversal, and CountNode methods
 Write recursive methods to count nodes or levels
+
+Logic: In a stack you would delete/pop the top of the stack. So you create a temp new Node and and set it to top->next. (temp = top->next) you can then delete top then set top = temp and you are done.
+
+In a linked list logic is the same but you would need to find the node you want to delete, copy it's next, previous nodes into a temp newNodes, delete then node, then set tempPrevious->next = tempNext
+
+Code for a stack deletion:
+```cpp
+ Word WordStack::pop()
+{
+    // create a temporary new Node
+    StackNode* temp = nullptr;
+    // create a temporary new Word object
+    Word w;
+
+    // check is stack is empty else "pop" off the top Node and return Word object
+    if (isEmpty())
+    {
+        // throw an exception when popping from an empty stack
+        throw EmptyStack();
+    }
+    else
+    {
+        // set our temp Word object w to the top Node's Word Object
+        w = top->word;
+        // sets out temp StackNode to top->next memory address
+        temp = top->next;
+        // deleting top Node
+        delete top;
+        // new top Node is now temp memory address linking the list back together
+        top = temp;
+        // return Word w object
+        return w;
+    }
+}
+```
