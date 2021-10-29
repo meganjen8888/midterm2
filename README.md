@@ -53,7 +53,7 @@ int CountNodes(TreeNode* tree)
 ```
 ## What is the cause of a degenerate tree?
 
-When a tree is balanced. It is not as efficient.
+When the value is inserted, it's always less than the root value, or greater than it. Ex: Inserting 1, 2, 3, 4, 5, 6 makes a tree which has all the nodes go towards the right.
 
 ## Review ADTs and Implementations
 
@@ -158,6 +158,29 @@ What is the efficiency of BST at best and worst
 When does the best and worst occur
 Review Insert, Traversal, and CountNode methods
 
+### Traversal
+-**Inorder traversal**: Value of a node is printed between the printing of the values in its left subtree and the values on the left subtree. Inorder traversals print values in a binary search tree in ascending key order. Like so:
+NOTE: Visit = doing whatever algorithm needs to do with values. Such as printing node values, summing data members, or deleting them
+```cpp
+if tree is not NULL
+    Inorder(Left tree)
+    Visit Info(tree)
+    Inorder(Right tree)
+```
+-**PostOrder traversal**: Node gets deleted after destroying its left subtree and right subtree.
+```cpp
+if tree isn't NULL
+    Postorder(Left tree)
+    Postorder(Right tree)
+    Visit info(tree)
+```
+-**PreOrder traversal**: The values in a node are visited before the values in its left subtree and in right subtree.
+```cpp
+if tree isn't NULL
+    Visit Info(tree)
+    Preorder(left tree)
+    Preorder(Right tree)
+```
 ### CountNode
 
 This is used to count the number of nodes in the Binary Search tree. The user calls this recursively with the pointer to the subtree as an argument. Therefore, they can write the general case. 
