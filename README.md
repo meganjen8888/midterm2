@@ -115,6 +115,26 @@ Thoughtful design for elements
 Could you create a stack or a queue class?
 What does it hold?
 
+An ADT Queue is implemented as a qeue of char items. It holds the comparing items, and allows the user to determine the maximum size with a parameterized constructor. It could also hold an array or a linkedlist to implement. It should be the same data type being inserted.
+
+```cpp
+class QueType
+{
+public:
+    QueueType(int max);
+    QueType();
+    ~QueType();
+    void MakeEmpty();
+    bool IsEmpty() const;
+    bool IsFull() const;
+    void Enqueue(ItemType item);
+    void DeQueue(ItemType& item);
+private:
+    ItemType* items;
+    int maxQue;
+}
+```
+
 Template type - way to hold class with different types
 
 
