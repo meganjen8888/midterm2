@@ -158,7 +158,7 @@ What is the efficiency of BST at best and worst
 When does the best and worst occur
 Review Insert, Traversal, and CountNode methods
 
-###CountNode
+### CountNode
 
 This is used to count the number of nodes in the Binary Search tree. The user calls this recursively with the pointer to the subtree as an argument. Therefore, they can write the general case. 
 ```cpp
