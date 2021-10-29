@@ -157,6 +157,50 @@ Trace BST by traversals
 What is the efficiency of BST at best and worst
 When does the best and worst occur
 Review Insert, Traversal, and CountNode methods
+
+###CountNode
+
+This is used to count the number of nodes in the Binary Search tree. The user calls this recursively with the pointer to the subtree as an argument. Therefore, they can write the general case. 
+```cpp
+if ((Left tree is NULL) and (Right tree is NULL)) 
+    return 1;
+else
+    return CountNodes(Left tree) + CountNodes(Right tree) + 1;
+```
+It works for Figure 8.5a in page 517, but not 8.5b. However, the user can check whether the left or right child of the tree is NULL without calling CountNodes if it is.
+
+```cpp
+if ((Left Tree is NULL) and (Right tree is NULL))
+    return 1
+else if (Left tree is NULL)
+    return CountNodes(Right Tree) + 1;
+else if (Right tree is NULL)
+    return CountNodes(Left tree) + 1;
+else return CountNodes(Left tree) + CountNodes(Right tree) + 1;
+```
+
+This works if CountNodes has a precondition that the tree isn't empty. But an initially empty tree would cause a crash.
+
+```cpp
+if (tree == NULL)
+    return 0;
+else if (Left tree is NULL and so if the Right tree)
+    return 1;
+else if (Left is NULL)
+    return CountNodes(Right Tree) + 1;
+else if (Right tree is NULL)
+    return CountNodes(Left Tree) + 1;
+else return CountNodes(Left Tree) + CountNodes(Right tree) + 1;
+```
+
+Simpler algorithm for CountNode:
+
+```cpp
+if tree is NULL
+    return 0
+else
+    return CountNodes(Left Tree) + CountNodes(Right Tree) + 1;
+```
 Write recursive methods to count nodes or levels
 
 How to remove a node from BST:
